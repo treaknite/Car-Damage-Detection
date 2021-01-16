@@ -1,0 +1,3 @@
+![](http://img.shields.io/static/v1?label=Phase&message=In%20Develeopment&color=blueviolet&style=plastic&logo=appveyor) ![](https://img.shields.io/static/v1?label=License&message=GPL-3.0&color=blueviolet&style=plastic&logo=appveyor)
+# Car-Classification
+We're trying to make full-featured automatic vehicle damage detection system.This system has many applications in Computer vision and also in fault detection.The main objective of this work is to show a system that solves the practical problem of car damage detection for real scenes. All steps of the process, from data acquisition to damage detection are considered to achieve good result.
