@@ -3,16 +3,6 @@ const previewContainer = document.getElementById('imagePreview');
 const previewImage = previewContainer.querySelector('.image-preview__image');
 const previewDefaultText = previewContainer.querySelector('.image-preview__default-text');
 
-//const { MongoClient } = require('mongodb');
-//const uri = "mongodb+srv://datacrusade1999:btIOV51mRbm7ZDDa@cluster0.ccvdv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-//const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-//client.connect(err => {
-//  const collection = client.db("test").collection("devices");
-//  // perform actions on the collection object
-//  client.close();
-//});
-
-
 // Image preview
 inpFile.addEventListener('change', function() {
     const file = this.files[0];
