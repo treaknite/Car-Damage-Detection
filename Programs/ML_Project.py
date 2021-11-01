@@ -5,8 +5,7 @@ import tensorflow as tf
 from sklearn.utils import shuffle
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
-from Modules.Plotter import plot_images
-from Modules.Con_Mat import plot_confusion_matrix
+import itertools
 from tensorflow.keras.callbacks import ReduceLROnPlateau
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,Flatten,Conv2D,MaxPool2D,Dropout
@@ -21,9 +20,9 @@ print("Num of GPU's Available ==>",len(physical_devices))
 
 
 
-train_path=r'C:\Users\ashut\Machine Learning\Dataset\train'
-test_path=r'C:\Users\ashut\Machine Learning\Dataset\test'
-valid_path=r'C:\Users\ashut\Machine Learning\Dataset\validation'
+train_path=r'C:\Users\ashut\data\train'
+test_path=r'C:\Users\ashut\data\test'
+valid_path=r'C:\Users\ashut\data\validation'
 
 
 train_batches=ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input).flow_from_directory(directory=train_path,target_size=(224,224),classes=['damage','whole'],batch_size=10)
@@ -32,6 +31,15 @@ test_batches=ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg
 
 
 imgs,labels=next(train_batches)
+
+def plot_images(images):
+    fig,axes=plt.subplots(1,10,figsize=(20,20))
+    axes=axes.flatten()
+    for img,ax in zip(images,axes):
+        ax.imshow(img)
+        ax.axis('off')
+    plt.tight_layout()
+    plt.show()
 
 plot_images(imgs)
 
@@ -82,6 +90,40 @@ test_batches.classes
 predictions=model.predict(x=test_batches,verbose=0)
 np.round(predictions)
 
+def plot_confusion_matrix(cm, classes,
+                        normalize=False,
+                        title='Confusion matrix',
+                        cmap=plt.cm.Blues):
+    """
+    This function prints and plots the confusion matrix.
+    Normalization can be applied by setting `normalize=True.
+    """
+    plt.imshow(cm, interpolation='nearest', cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.yticks(tick_marks, classes)
+
+    if normalize:
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        print("Normalized confusion matrix")
+    else:
+        print('Confusion matrix, without normalization')
+
+    print(cm)
+
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, cm[i, j],
+            horizontalalignment="center",
+            color="white" if cm[i, j] > thresh else "black")
+
+    plt.tight_layout()
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+    plt.show()
+
 
 cm=confusion_matrix(y_true=test_batches.classes,y_pred=np.argmax(predictions,axis=-1))
 
@@ -92,5 +134,5 @@ cm_plot_labels=['damage','whole']
 
 plot_confusion_matrix(cm=cm,classes=cm_plot_labels)
 
-if os.path.isdir(r'C:\Users\ashut\Project\Alpha_small.h5') is False:
-        model.save(r'C:\Users\ashut\Project\Alpha_small.h5')
+if os.path.isdir(r'Result\Alpha_small.h5') is False:
+        model.save(r'Result\Alpha_small.h5')

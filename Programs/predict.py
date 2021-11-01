@@ -8,7 +8,7 @@ import warnings
 warnings.simplefilter(action='ignore',category=FutureWarning)
 
 
-model = tf.keras.models.load_model(r'C:\Users\ashut\Project\Alpha_small.h5')
+model = tf.keras.models.load_model(r'Result\Alpha_small.tflite')
 
 def prediction(path):
     image_path=path
