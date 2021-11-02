@@ -26,15 +26,15 @@ inpFile.addEventListener('change', function() {
     }
 });
 
-const about = document.getElementById('about-project');
-about.addEventListener('click', function() {
-    document.getElementById("playground").className = "nav-link";
-    document.getElementById("about-project").className = "nav-link active";
-    
-});
-
 const playground = document.getElementById('playground');
 playground.addEventListener('click', function() {
     document.getElementById("about-project").className = "nav-link";
     document.getElementById("playground").className = "nav-link active";
+});
+
+const about = document.getElementById('about-project');
+about.addEventListener('click', function() {
+    document.getElementById("playground-about").className = "nav-link";
+    document.getElementById("about-project").className = "nav-link active";
+    
 });
