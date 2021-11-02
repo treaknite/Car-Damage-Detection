@@ -2,8 +2,7 @@
   "name": "car-damage-detection",
   "version": "1.0.0",
   "description": "This web app detects whether the car is damaged or not",
-  "main": "main.js",
-  "type": "commonjs",
+  "main": "main.mjs",
   "scripts": {
     "start": "flask run"
   },
