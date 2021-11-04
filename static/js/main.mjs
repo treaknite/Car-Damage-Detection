@@ -1,3 +1,5 @@
+
+
 const inpFile = document.getElementById('image');
 const previewContainer = document.getElementById('imagePreview');
 const previewImage = previewContainer.querySelector('.image-preview__image');

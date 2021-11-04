@@ -8,7 +8,7 @@ import warnings
 warnings.simplefilter(action='ignore',category=FutureWarning)
 
 
-model = tf.keras.models.load_model(r'Result\Alpha_small.tflite')
+model = tf.keras.models.load_model(r'Programs\Result\Alpha_small.h5')
 
 def prediction(path):
     image_path=path
@@ -22,5 +22,5 @@ def prediction(path):
         return "Not Damaged"
 
 if __name__=="__main__":
-    print(prediction(r"C:\Users\ashut\Project\0.jpeg"))
+    print(prediction(r"C:\Users\ashut\data\test\whole\0018.JPEG"))
 
